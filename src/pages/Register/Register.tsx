@@ -10,6 +10,8 @@ import IconPassword from "../../assets/icon/password.png";
 import { AuthLayout } from "../../layouts/AuthLayout/AuthLayout";
 import { useAuthStore } from "../../store/useAuthStore";
 import { Alert } from "../../components/Alert/Alert";
+import { PasswordValid } from "../../utils/PasswordValid";
+import { AlertEnum, AlertMessageEnum } from "../../enum/enum";
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -24,22 +26,27 @@ export const Register = () => {
         event.preventDefault();
 
         if (!name || !email || !password || !confirmPassword) {
-            setAlert("Por favor, preencha todos os campos.", "error");
+            setAlert(AlertMessageEnum.FIELDEMPTY, AlertEnum.ERROR);
             return;
         }
 
         if (password !== confirmPassword) {
-            setAlert("As senhas não coincidem.", "error");
+            setAlert(AlertMessageEnum.PASSWORDNOTMATCH, AlertEnum.ERROR);
+            return;
+        }
+
+        if (PasswordValid(password)) {
+            setAlert(AlertMessageEnum.PASSWORDVALID, AlertEnum.ERROR);
             return;
         }
 
         const success = registerUser({ name, email, password });
 
         if (success) {
-            setAlert("Cadastro realizado com sucesso!", "success");
+            setAlert(AlertMessageEnum.REGISTERSUCCESS, AlertEnum.SUCCESS);
             navigate("/");
         } else {
-            setAlert("Este e-mail já está cadastrado.", "error");
+            setAlert(AlertMessageEnum.EMAILALREADYREGISTER, AlertEnum.ERROR);
         }
     };
 

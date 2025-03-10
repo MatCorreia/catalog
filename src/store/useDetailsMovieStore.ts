@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import { getDetailsMovies } from "../services/detailsService";
+import { DetailsMovie } from "../@types/detailsMovieModel";
 
-interface MovieStore {
+interface DetailsMovieStore {
     movie: any;
     loading: boolean;
     error: string | null;
@@ -11,8 +12,8 @@ interface MovieStore {
 
 const CACHE_EXPIRATION_TIME = 5 * 60 * 1000;
 
-export const useDetailsMovieStore = create<MovieStore>((set, get) => ({
-    movie: {},
+export const useDetailsMovieStore = create<DetailsMovieStore>((set, get) => ({
+    movie: {} as DetailsMovie,
     loading: false,
     error: null,
     cache: new Map(),

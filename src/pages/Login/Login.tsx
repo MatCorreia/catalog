@@ -14,7 +14,10 @@ import { Alert } from "../../components/Alert/Alert";
 
 import { useMovieStore } from "../../store/useMovieStore";
 
-import "./Login.css"
+import { PasswordValid } from "../../utils/PasswordValid";
+import { AlertEnum, AlertMessageEnum } from "../../enum/enum";
+
+import "./Login.css";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -27,13 +30,19 @@ export const Login = () => {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
+
+        if (PasswordValid(password)) {
+            setAlert(AlertMessageEnum.PASSWORDVALID, AlertEnum.ERROR);
+            return;
+        }
+
         const success = loginUser(email, password);
 
         if (success) {
             setPage(1);
             navigate("/dashboard");
         } else {
-            setAlert("Email ou senha incorretos.", "error");
+            setAlert(AlertMessageEnum.PASSWORDINCORRET, AlertEnum.ERROR);
         }
     };
 

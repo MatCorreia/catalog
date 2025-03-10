@@ -3,9 +3,11 @@ import { MainLayout } from '../../layouts/MainLayout/MainLayout';
 import { Suspense, useEffect } from 'react';
 import { useDetailsMovieStore } from '../../store/useDetailsMovieStore';
 
-import './Details.css'
 import { SkeletonDetails } from '../../components/Skeleton/Skeleton';
 import { Button } from '../../components/Button/Button';
+import { Genre, ProductionCompany, ProductionCountry, SpokenLanguage } from '../../@types/detailsMovieModel';
+
+import './Details.css'
 
 export const Details = () => {
     const { id } = useParams();
@@ -45,7 +47,7 @@ export const Details = () => {
                                 </div>
                                 <div className="movie-info">
                                     <p><strong>Release Date:</strong> {new Date(movie.release_date).toLocaleDateString()}</p>
-                                    <p><strong>Genres:</strong> {movie?.genres?.map((genre: any) => genre.name).join(', ')}</p>
+                                    <p><strong>Genres:</strong> {movie?.genres?.map((genre: Genre) => genre.name).join(', ')}</p>
                                     <p><strong>Overview:</strong> {movie.overview}</p>
                                     <p><strong>Vote Average:</strong> {movie.vote_average}</p>
                                     <p><strong>Status:</strong> {movie.status}</p>
@@ -58,7 +60,7 @@ export const Details = () => {
                                 <div className="movie-details-companies">
                                     <strong>Production Companies:</strong>
                                     <ul>
-                                        {movie?.production_companies?.map((company: any) => (
+                                        {movie?.production_companies?.map((company: ProductionCompany) => (
                                             <li key={company.id}>
                                                 <img
                                                     className="company-logo"
@@ -74,7 +76,7 @@ export const Details = () => {
                                 <div className="movie-details-languages">
                                     <strong>Spoken Languages:</strong>
                                     <ul>
-                                        {movie?.spoken_languages?.map((language: any) => (
+                                        {movie?.spoken_languages?.map((language: SpokenLanguage) => (
                                             <li key={language.iso_639_1}>{language.name}</li>
                                         ))}
                                     </ul>
@@ -83,7 +85,7 @@ export const Details = () => {
                                 <div className="movie-details-countries">
                                     <strong>Production Countries:</strong>
                                     <ul>
-                                        {movie?.production_countries?.map((country: any) => (
+                                        {movie?.production_countries?.map((country: ProductionCountry) => (
                                             <li key={country.iso_3166_1}>{country.name}</li>
                                         ))}
                                     </ul>

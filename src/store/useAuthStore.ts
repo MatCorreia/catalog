@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { AlertEnum, AuthEnum } from "../enum/enum";
 
 interface User {
   name: string;
@@ -9,16 +10,16 @@ interface User {
 interface AuthStore {
   users: User[];
   loggedUser: User | null;
-  alert: { message: string; type: "success" | "error" } | null;
+  alert: { message: string; type: AlertEnum.SUCCESS | AlertEnum.ERROR } | null;
   registerUser: (user: User) => boolean;
   loginUser: (email: string, password: string) => boolean;
   logoutUser: () => void;
-  setAlert: (message: string, type: "success" | "error") => void;
+  setAlert: (message: string, type: AlertEnum.SUCCESS | AlertEnum.ERROR) => void;
 }
 
 export const useAuthStore = create<AuthStore>((set, get) => {
-  const savedUsers = sessionStorage.getItem("users");
-  const savedLoggedUser = sessionStorage.getItem("loggedUser");
+  const savedUsers = sessionStorage.getItem(AuthEnum.USERS);
+  const savedLoggedUser = sessionStorage.getItem(AuthEnum.LOGGEDUSER);
 
   const initialUsers: User[] = savedUsers ? JSON.parse(savedUsers) : [];
   const initialLoggedUser = savedLoggedUser ? JSON.parse(savedLoggedUser) : null;
@@ -38,7 +39,7 @@ export const useAuthStore = create<AuthStore>((set, get) => {
 
       set((state) => {
         const updatedUsers = [...state.users, user];
-        sessionStorage.setItem("users", JSON.stringify(updatedUsers));
+        sessionStorage.setItem(AuthEnum.USERS, JSON.stringify(updatedUsers));
         return { users: updatedUsers };
       });
       return true;
@@ -49,7 +50,7 @@ export const useAuthStore = create<AuthStore>((set, get) => {
       const user = users.find((u) => u.email === email && u.password === password);
 
       if (user) {
-        sessionStorage.setItem("loggedUser", JSON.stringify(user));
+        sessionStorage.setItem(AuthEnum.LOGGEDUSER, JSON.stringify(user));
         set({ loggedUser: user });
         return true;
       } else {
@@ -58,11 +59,11 @@ export const useAuthStore = create<AuthStore>((set, get) => {
     },
 
     logoutUser: () => {
-      sessionStorage.removeItem("loggedUser");
+      sessionStorage.removeItem(AuthEnum.LOGGEDUSER);
       set({ loggedUser: null });
     },
 
-    setAlert: (message: string, type: "success" | "error") => {
+    setAlert: (message: string, type: AlertEnum.SUCCESS | AlertEnum.ERROR) => {
       set({ alert: { message, type } });
 
       setTimeout(() => {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AuthEnum } from "../enum/enum";
 
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/",
@@ -25,7 +26,7 @@ api.interceptors.response.use(
     (error) => {
         if (error.response) {
             if (error.response.status === 401) {
-                sessionStorage.removeItem("loggedUser");
+                sessionStorage.removeItem(AuthEnum.LOGGEDUSER);
                 window.location.href = "/";
             }
 

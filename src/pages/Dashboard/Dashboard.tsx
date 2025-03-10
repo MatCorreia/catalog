@@ -63,8 +63,6 @@ export const Dashboard = () => {
             )}
 
             {totalPages > 1 && <Pagination />}
-
-
         </MainLayout>
     );
 };

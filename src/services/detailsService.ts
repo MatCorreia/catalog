@@ -1,7 +1,8 @@
 import { ApiResponse } from "../@types/apiModel";
+import { DetailsMovie } from "../@types/detailsMovieModel";
 import api from "./api";
 
-export const getDetailsMovies = async (id: number): Promise<ApiResponse<any>> => {
+export const getDetailsMovies = async (id: number): Promise<ApiResponse<DetailsMovie>> => {
     try {
         const response = await api.get(`/3/movie/${id}`);
         return response.data;
