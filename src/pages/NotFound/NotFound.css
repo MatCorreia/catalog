@@ -1,0 +1,49 @@
+.bg-notfound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.bg-notfound-content {
+    text-align: center;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    
+}
+
+.bg-notfound-title {
+    font-size: 8rem;
+
+    color: var(--secondary-color);
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.bg-notfound-subtitle {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.bg-notfound-message {
+    font-size: 1rem;
+    color: #FFFFFF;
+    margin-bottom: 2.5rem;
+}
+
+.bg-notfound-btn {
+    text-decoration: none;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.homeButton:hover {
+    background-color: var(--secondary-color);
+}

@@ -1,0 +1,46 @@
+.skeleton {
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(90deg, #1e242a 25%, #2c353f 50%, #1e242a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-card {
+    max-width: 280px;
+}
+
+.skeleton-card-content {
+    width: 100%;
+    height: clamp(235px, 60vw, 345px);
+}
+
+.skeleton-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.skeleton-card-title {
+    margin-top: .375rem;
+}
+
+.skeleton-details {
+  width: auto;
+  height: 640px;
+
+  border-radius: 8px;
+
+  padding: 2rem;
+  margin: 2rem auto;
+}

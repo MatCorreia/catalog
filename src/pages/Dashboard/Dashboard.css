@@ -1,0 +1,27 @@
+.bg-col-movies {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 2rem;
+    display: grid;
+}
+
+.bg-title-dashboard {
+    color: var(--secondary-color);
+}
+
+@media (max-width: 1024px) {
+    .bg-col-movies {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 820px) {
+    .bg-col-movies {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .bg-col-movies {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
